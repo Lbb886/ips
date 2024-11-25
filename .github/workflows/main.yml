@@ -34,7 +34,7 @@ jobs:
       run: |
         git config --global user.name 'Lbb886'
         git config --global user.email '2745592207@qq.com'
-        git add ipv4.txt ipv6.txt
+        git add ip.txt ipv6.txt
         git commit -m 'Update IP lists'
         git push
       env:
