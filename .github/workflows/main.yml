@@ -37,7 +37,7 @@ jobs:
     - name: 推送到public分支
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        token: ${{ secrets.KET }}
+        token: ${{ secrets.KEY }}
         epository-name: Lbb886/ips
         branch: public
         folder: .
