@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        ref: main
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -33,13 +35,10 @@ jobs:
         python main.py
 
     - name: 推送到public分支
-      uses: JamesIves/github-pages-deploy-action@v4.6.4
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{ secrets.KET }}
         epository-name: Lbb886/ips
         branch: public
         folder: .
         commit-message: "Update IP lists"
-        clean: false
-        target-folder: "./" # 指定目标文件夹
-        file-filter: "ipv4.txt\nipv6.txt"
