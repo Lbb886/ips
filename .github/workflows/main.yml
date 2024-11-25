@@ -32,12 +32,14 @@ jobs:
       run: |
         python main.py
 
-    - name: Commit and push changes
-      run: |
-        git config --global user.name 'Lbb886'
-        git config --global user.email '2745592207@qq.com'
-        git add ip.txt ipv6.txt
-        git commit -m 'Update IP lists'
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.KEY }}
+    - name: 推送到public分支
+      uses: JamesIves/github-pages-deploy-action@v4.6.4
+      with:
+        token: ${{ secrets.KET }}
+        epository-name: Lbb886/ips
+        branch: public
+        folder: .
+        commit-message: "Update IP lists"
+        clean: false
+        target-folder: "./" # 指定目标文件夹
+        file-filter: "ipv4.txt\nipv6.txt"
