@@ -32,10 +32,10 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
+        git config --global user.name 'Lbb886'
+        git config --global user.email '2745592207@qq.com'
         git add ipv4.txt ipv6.txt
         git commit -m 'Update IP lists'
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.key }}
