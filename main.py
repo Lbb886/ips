@@ -69,3 +69,10 @@ print(ipv6_pairs)
 # 保存结果到文件
 with open('ipv6.txt', 'w') as ipv6_file:
     ipv6_file.write(ipv6_pairs)
+
+# 创建汇总文件
+with open('api.txt', 'w') as api_file:
+    for ip in ipv4s:
+        api_file.write(ip + '\n')
+    for ip in ipv6s:
+        api_file.write('[' + ip + ']\n')
