@@ -38,4 +38,4 @@ jobs:
         git commit -m 'Update IP lists'
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.key }}
+        GITHUB_TOKEN: ${{ secrets.KEY }}
