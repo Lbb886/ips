@@ -3,7 +3,7 @@ name: Scrape and Save IPs
 on:
   schedule:
     # 每小时执行一次爬取任务（UTC时间零点）
-    - cron: '0 0/6 * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
   push:
