@@ -32,6 +32,7 @@ jobs:
     - name: Run scrape script
       run: |
         python main.py
+        cp ip.txt ipv6.txt api.txt ./jg
 
     - name: 推送到public分支
       uses: JamesIves/github-pages-deploy-action@v4
@@ -39,5 +40,5 @@ jobs:
         token: ${{ secrets.KEY }}
         epository-name: Lbb886/ips
         branch: public
-        folder: .
+        folder: jg
         commit-message: "Update IP lists"
