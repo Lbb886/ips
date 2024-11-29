@@ -2,7 +2,7 @@ name: Scrape and Save IPs
 
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '30 */2 * * *'
   workflow_dispatch:
 
   push:
