@@ -1,4 +1,4 @@
-name: Network Performance Monitor
+name: ip
 
 on:
   schedule:
@@ -10,7 +10,7 @@ on:
       - 'ip.py'  # 脚本文件变更时触发
 
 jobs:
-  monitor:
+  ip:
     runs-on: ubuntu-latest
     name: Check network performance and notify
     
@@ -40,6 +40,6 @@ jobs:
           github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            title: 'Network Monitor Failed',
+            title: 'Failed',
             body: '网络监控脚本执行失败，请检查日志。'
           })
