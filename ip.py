@@ -46,7 +46,7 @@ def get_top_ips(api_url, wechat_webhook):
             message += f"🥇 排名 {i}: {ip_info['ip']}\n"
             message += f"   平均分: {ip_info['avgScore']}\n"
             message += f"   测量时间: {ip_info['createdTime']}\n"
-            message += f"   延迟统计: 电信:{ip_info['ydLatencyAvg']}ms 联通:{ip_info['dxLatencyAvg']}ms 移动:{ip_info['ltLatencyAvg']}ms\n\n"
+            message += f"   延迟统计: 电信: {ip_info['ydLatencyAvg']} ms 联通: {ip_info['dxLatencyAvg']} ms 移动: {ip_info['ltLatencyAvg']} ms\n\n"
         
         # 发送到企业微信机器人
         payload = {
