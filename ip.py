@@ -4,7 +4,7 @@ from datetime import datetime
 
 def get_top_ips(api_url):
     """
-    获取API结果中avgScore排名前六（分数最低）的IP
+    获取API结果中avgScore排名前五（分数最低）的IP
     """
     try:
         # 获取API数据
@@ -31,8 +31,8 @@ def get_top_ips(api_url):
         # 按avgScore升序排序（分数越低越好）
         sorted_ips = sorted(all_ips, key=lambda x: x['avgScore'])
         
-        # 获取前六名（分数最低的六个）
-        top_ips = sorted_ips[:6]
+        # 获取前五
+        top_ips = sorted_ips[:5]
         
         return top_ips
         
@@ -125,7 +125,7 @@ def send_to_wechat_bot(wechat_webhook, domain, subdomain, top_ips):
         full_subdomain = f"{subdomain}.{domain}" if subdomain else domain
         
         # 格式化消息内容
-        message = f"📊 IP性能排行榜 (Top 6 - 分数越低越好)\n"
+        message = f"📊 IP延迟排行榜 (Top 5 - 分数越低越好)\n"
         message += f"📅 数据时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
         message += f"🌐 更新域名: {full_subdomain}\n\n"
         
