@@ -7,7 +7,6 @@ on:
   push:
     paths:
       - 'ip.py'
-      - 'requirements.txt'
 
 jobs:
   monitor:
