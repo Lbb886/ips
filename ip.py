@@ -4,7 +4,7 @@ from datetime import datetime
 
 def get_top_ips(api_url):
     """
-    获取API结果中avgScore排名前五（分数最低）的IP
+    获取API结果中avgScore排名前五（分数最低）且不重复的IP
     """
     try:
         # 获取API数据
@@ -31,10 +31,19 @@ def get_top_ips(api_url):
         # 按avgScore升序排序（分数越低越好）
         sorted_ips = sorted(all_ips, key=lambda x: x['avgScore'])
         
-        # 获取前五
-        top_ips = sorted_ips[:5]
+        # 去重处理：保留分数最低的IP
+        unique_ips = []
+        seen_ips = set()
         
-        return top_ips
+        for ip_info in sorted_ips:
+            if ip_info['ip'] not in seen_ips:
+                unique_ips.append(ip_info)
+                seen_ips.add(ip_info['ip'])
+                # 如果已经收集了5个不同的IP，则停止
+                if len(unique_ips) >= 5:
+                    break
+        
+        return unique_ips
         
     except requests.exceptions.RequestException as e:
         print(f"请求错误: {e}")
@@ -125,9 +134,10 @@ def send_to_wechat_bot(wechat_webhook, domain, subdomain, top_ips):
         full_subdomain = f"{subdomain}.{domain}" if subdomain else domain
         
         # 格式化消息内容
-        message = f"📊 IP延迟排行榜 (Top 5 - 分数越低越好)\n"
+        message = f"📊 IP性能排行榜 (Top 5 - 分数越低越好)\n"
         message += f"📅 数据时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
-        message += f"🌐 更新域名: {full_subdomain}\n\n"
+        message += f"🌐 更新域名: {full_subdomain}\n"
+        message += f"🔢 去重后IP数量: {len(top_ips)}\n\n"
         
         for i, ip_info in enumerate(top_ips, 1):
             message += f"🥇 排名 {i}: {ip_info['ip']}\n"
@@ -170,7 +180,7 @@ def main():
     CLOUDFLARE_SUBDOMAIN = "cdn"  # 替换为您要更新的子域名（如"www"、"cdn"等）
     CLOUDFLARE_API_TOKEN = "ykrY7gQM1I8n_couD9boIkdpTn_BxhhQTri5XQ83"  # 替换为您的Cloudflare API令牌
     
-    # 获取分数最低的六个IP
+    # 获取分数最低的5个不重复IP
     top_ips = get_top_ips(API_URL)
     
     if not top_ips:
