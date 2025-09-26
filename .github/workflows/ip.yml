@@ -1,4 +1,4 @@
-name: Network Performance Monitor
+name: ip
 
 on:
   schedule:
@@ -9,7 +9,7 @@ on:
       - 'ip.py'
 
 jobs:
-  monitor:
+  ip:
     runs-on: ubuntu-latest
     
     steps:
