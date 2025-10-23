@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 from datetime import datetime, timedelta
 
 def get_top_ips(api_url):
@@ -176,10 +177,10 @@ def send_to_wechat_bot(wechat_webhook, domain, subdomain, top_ips):
 def main():
     # 配置参数
     API_URL = "https://vps789.com/openApi/cfIpApi"  # 替换为实际的API地址
-    WECHAT_WEBHOOK = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=588d175e-f230-4505-86ac-cbe5bfda77fd"  # 替换为企业微信机器人webhook地址
+    WECHAT_WEBHOOK = os.environ.get('WECHAT_WEBHOOK')
     CLOUDFLARE_DOMAIN = "njuvtk.ggff.net"  # 替换为您的域名
     CLOUDFLARE_SUBDOMAIN = "cdn"  # 替换为您要更新的子域名（如"www"、"cdn"等）
-    CLOUDFLARE_API_TOKEN = "60nGx2La9pZU5eP0tXFxg0abBE1Phk2zQ35XVPTY"  # 替换为您的Cloudflare API令牌
+    CLOUDFLARE_API_TOKEN = os.environ.get('CLOUDFLARE_API_TOKEN')
     
     # 获取分数最低的5个不重复IP
     top_ips = get_top_ips(API_URL)
