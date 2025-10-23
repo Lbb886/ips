@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: '36 * * * *'
   workflow_dispatch:
-  push:
-    paths:
-      - 'ip.py'
 
 jobs:
   ip:
@@ -26,5 +23,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests
 
-    - name: Run script
+    - name: Run ip.py
+      env:
+        WECHAT_WEBHOOK: ${{ secrets.WECHAT_WEBHOOK }}
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       run: python ip.py
