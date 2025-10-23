@@ -1,6 +1,6 @@
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def get_top_ips(api_url):
     """
@@ -134,8 +134,9 @@ def send_to_wechat_bot(wechat_webhook, domain, subdomain, top_ips):
         full_subdomain = f"{subdomain}.{domain}" if subdomain else domain
         
         # 格式化消息内容
+        local_time = datetime.now() + timedelta(hours=8)
         message = f"📊 IP延迟排行榜 Top 5\n"
-        message += f"📅 数据时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+        message += f"📅 数据时间: {local_time.strftime('%Y-%m-%d %H:%M:%S')}\n"
         message += f"🌐 更新域名: {full_subdomain}\n"
         message += f"🔢 去重后IP数量: {len(top_ips)}\n\n"
         
