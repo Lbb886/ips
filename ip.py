@@ -178,7 +178,7 @@ def main():
     # 配置参数
     API_URL = "https://vps789.com/openApi/cfIpApi"  # 替换为实际的API地址
     WECHAT_WEBHOOK = os.environ.get('WECHAT_WEBHOOK')
-    CLOUDFLARE_DOMAIN = "njuvtk.ggff.net"  # 替换为您的域名
+    CLOUDFLARE_DOMAIN = "njuv.xx.kg"  # 替换为您的域名
     CLOUDFLARE_SUBDOMAIN = "cdn"  # 替换为您要更新的子域名（如"www"、"cdn"等）
     CLOUDFLARE_API_TOKEN = os.environ.get('CLOUDFLARE_API_TOKEN')
     
