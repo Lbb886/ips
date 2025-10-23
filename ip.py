@@ -4,7 +4,7 @@ from datetime import datetime
 
 def get_top_ips(api_url):
     """
-    获取API结果中avgScore排名前五（分数最低）且不重复的IP
+    获取API结果中avgScore排名前五且不重复的IP
     """
     try:
         # 获取API数据
@@ -134,14 +134,14 @@ def send_to_wechat_bot(wechat_webhook, domain, subdomain, top_ips):
         full_subdomain = f"{subdomain}.{domain}" if subdomain else domain
         
         # 格式化消息内容
-        message = f"📊 IP性能排行榜 (Top 5 - 分数越低越好)\n"
+        message = f"📊 IP延迟排行榜 Top 5\n"
         message += f"📅 数据时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
         message += f"🌐 更新域名: {full_subdomain}\n"
         message += f"🔢 去重后IP数量: {len(top_ips)}\n\n"
         
         for i, ip_info in enumerate(top_ips, 1):
             message += f"🥇 排名 {i}: {ip_info['ip']}\n"
-            message += f"   平均分: {ip_info['avgScore']}\n"
+            message += f"   平均延迟: {ip_info['avgScore']}\n"
             message += f"   测量时间: {ip_info['createdTime']}\n"
             message += f"   延迟统计: 电信:{ip_info['ydLatencyAvg']}ms 联通:{ip_info['dxLatencyAvg']}ms 移动:{ip_info['ltLatencyAvg']}ms\n\n"
         
